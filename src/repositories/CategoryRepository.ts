@@ -11,7 +11,7 @@ class CategoryRepository {
     this.categories = []
   }
 
-  create({ name, description }: IClassCategoryDTO) {
+  create({ name, description }: IClassCategoryDTO): void {
     const category = new Category()
     Object.assign(category, {
       name,
