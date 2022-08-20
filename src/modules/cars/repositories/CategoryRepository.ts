@@ -1,10 +1,21 @@
 import { Category } from '../model/Category'
 import { ICaterogyRepository, IClassCategoryDTO } from './ICategoryRepository'
-
+// Crio uma classe e digo que será uma implementação da tipagem ICaterogyRepository -PRIVATE
 class CategoryRepository implements ICaterogyRepository {
   private categories: Category[]
-  constructor() {
+
+  // eslint-disable-next-line no-use-before-define
+  private static INSTANCE: CategoryRepository
+
+  private constructor() {
     this.categories = []
+  }
+
+  public static getInstance(): CategoryRepository {
+    if (!CategoryRepository.INSTANCE) {
+      CategoryRepository.INSTANCE = new CategoryRepository()
+    }
+    return CategoryRepository.INSTANCE
   }
 
   create({ name, description }: IClassCategoryDTO): void {

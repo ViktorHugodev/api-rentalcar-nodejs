@@ -1,11 +1,11 @@
-import { ICaterogyRepository } from '../repositories/ICategoryRepository'
+import { ICaterogyRepository } from '../../repositories/ICategoryRepository'
 
 interface ICategoryService {
   description: string
   name: string
 }
-
-class CreateCategoryService {
+// CreateService tem a única função, criar um serivço, nada mais
+class CreateCategoryUseCase {
   constructor(private categoryRepository: ICaterogyRepository) {}
   execute({ description, name }: ICategoryService): void {
     const categoryAlreadyExists = this.categoryRepository.findByName(name)
@@ -16,4 +16,4 @@ class CreateCategoryService {
   }
 }
 
-export { CreateCategoryService }
+export { CreateCategoryUseCase }

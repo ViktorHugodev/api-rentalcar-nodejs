@@ -1,5 +1,5 @@
 import { Category } from '../model/Category'
-
+// Esse arquivo é a chave de criação, outros se adequam a ele.
 interface IClassCategoryDTO {
   name: string
   description: string
