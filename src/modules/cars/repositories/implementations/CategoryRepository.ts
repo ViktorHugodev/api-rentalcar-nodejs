@@ -1,5 +1,5 @@
-import { Category } from '../model/Category'
-import { ICaterogyRepository, IClassCategoryDTO } from './ICategoryRepository'
+import { Category } from '../../model/Category'
+import { ICaterogyRepository, IClassCategoryDTO } from '../ICategoryRepository'
 // Crio uma classe e digo que será uma implementação da tipagem ICaterogyRepository -PRIVATE
 class CategoryRepository implements ICaterogyRepository {
   private categories: Category[]
