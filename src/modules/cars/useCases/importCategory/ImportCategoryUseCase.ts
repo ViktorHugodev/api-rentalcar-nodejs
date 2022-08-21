@@ -22,11 +22,13 @@ class ImportCategoryUseCase {
           categories.push({ name, description })
         })
         .on('end', () => {
+          fs.promises.unlink(file.path)
           resolve(categories)
         })
         .on('error', (error) => reject(error))
     })
   }
+
   async execute(file: Express.Multer.File): Promise<void> {
     const categories = await this.loadCategories(file)
     categories.map(async (category) => {
