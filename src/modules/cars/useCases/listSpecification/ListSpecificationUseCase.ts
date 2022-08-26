@@ -1,4 +1,4 @@
-import { Category } from '../../model/Category'
+import { Category } from '../../entities/Category'
 import { ISpecificationRepository } from '../../repositories/ISpecificationRepository'
 
 // CreateService tem a única função, criar um serivço, nada mais

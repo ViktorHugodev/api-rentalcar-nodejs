@@ -1,4 +1,4 @@
-import { Category } from '../model/Category'
+import { Category } from '../entities/Category'
 // Esse arquivo é a chave de criação, outros se adequam a ele.
 interface IClassCategoryDTO {
   name: string
@@ -6,9 +6,9 @@ interface IClassCategoryDTO {
 }
 
 interface ICaterogyRepository {
-  findByName(name: string): Category
-  list(): Category[]
-  create({ name, description }: IClassCategoryDTO): void
+  findByName(name: string): Promise<Category>
+  list(): Promise<Category[]>
+  create({ name, description }: IClassCategoryDTO): Promise<void>
 }
 
 export { ICaterogyRepository, IClassCategoryDTO }
