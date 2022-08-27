@@ -1,17 +1,14 @@
 import { Repository } from 'typeorm'
 
-import dataSource from '../../../../database/data-source'
+import AppDataSource from '../../../../database/data-source'
 import { Category } from '../../entities/Category'
 import { ICaterogyRepository, IClassCategoryDTO } from '../ICategoryRepository'
-// Crio uma classe e digo que será uma implementação da tipagem ICaterogyRepository -PRIVATE++
 
 class CategoryRepository implements ICaterogyRepository {
   private repository: Repository<Category>
-  // eslint-disable-next-line no-use-before-define
-  private static INSTANCE: CategoryRepository
 
   constructor() {
-    this.repository = dataSource.getRepository(Category)
+    this.repository = AppDataSource.getRepository(Category)
   }
 
   async create({ name, description }: IClassCategoryDTO): Promise<void> {
