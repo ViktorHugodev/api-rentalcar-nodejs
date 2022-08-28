@@ -17,14 +17,12 @@ class UsersRepository implements IUsersRepository {
     email,
     password,
     driver_license,
-    username,
   }: IUserCreateDTO): Promise<void> {
     const user = this.repository.create({
       name,
       email,
       password,
       driver_license,
-      username,
     })
     await this.repository.save(user)
   }
@@ -33,6 +31,10 @@ class UsersRepository implements IUsersRepository {
   }
   findByName(name: string): Promise<User> {
     throw new Error('Method not implemented.')
+  }
+  async findByEmail(email: string): Promise<User> {
+    const user = await this.repository.findOneBy({ email })
+    return user
   }
 }
 
