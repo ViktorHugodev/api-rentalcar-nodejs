@@ -29,8 +29,9 @@ class UsersRepository implements IUsersRepository {
   list(): Promise<void> {
     throw new Error('Method not implemented.')
   }
-  findByName(name: string): Promise<User> {
-    throw new Error('Method not implemented.')
+  findById(id: string): Promise<User> {
+    const user = this.repository.findOneBy({ id })
+    return user
   }
   async findByEmail(email: string): Promise<User> {
     const user = await this.repository.findOneBy({ email })

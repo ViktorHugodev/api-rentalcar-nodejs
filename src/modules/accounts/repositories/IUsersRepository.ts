@@ -4,7 +4,7 @@ import { User } from '../entities/User'
 interface IUsersRepository {
   create(data: IUserCreateDTO): Promise<void>
   list(): Promise<void>
-  findByName(name: string): Promise<User>
+  findById(id: string): Promise<User>
   findByEmail(email: string): Promise<User>
 }
 
