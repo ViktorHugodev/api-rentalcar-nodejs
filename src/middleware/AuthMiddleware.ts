@@ -1,6 +1,7 @@
 import { Response, Request, NextFunction } from 'express'
 import { verify } from 'jsonwebtoken'
 
+import { AppErrors } from '../errors/AppError'
 import { UsersRepository } from '../modules/accounts/repositories/implementations/UsersRepository'
 
 export async function authMiddleware(
@@ -11,7 +12,7 @@ export async function authMiddleware(
   const authHeaders = request.headers.authorization
 
   if (!authHeaders) {
-    throw new Error('Token is missing')
+    throw new AppErrors('Token is missing', 401)
   }
 
   const [, token] = authHeaders.split(' ')
@@ -21,10 +22,10 @@ export async function authMiddleware(
     const usersRepository = new UsersRepository()
     const user = await usersRepository.findById(user_id as string)
     if (!user) {
-      throw new Error('User does not exist')
+      throw new AppErrors('User does not exist', 404)
     }
     next()
   } catch (error) {
-    throw new Error('Invalid token')
+    throw new AppErrors('Invalid token', 401)
   }
 }
