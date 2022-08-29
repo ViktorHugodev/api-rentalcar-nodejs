@@ -4,9 +4,10 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "dev": "ts-node-dev --inspect --transpile-only --ignore-watch node_modules --respawn src/server.ts",
+    "dev": "ts-node-dev --inspect=0.0.0.0:9229 --transpile-only --ignore-watch node_modules --respawn src/server.ts ",
     "typeorm": "ts-node-dev ./node_modules/typeorm/cli",
-    "migration:run": "ts-node-dev ./node_modules/typeorm/cli migration:run -d ./src/database/data-source.ts"
+    "migration:run": "ts-node-dev ./node_modules/typeorm/cli migration:run -d ./src/database/data-source.ts",
+    "debug":"node -r ts-node/register --inspect=0.0.0.0:9229 src/*.ts"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",

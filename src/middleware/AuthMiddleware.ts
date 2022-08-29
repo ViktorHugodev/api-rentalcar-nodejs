@@ -24,6 +24,9 @@ export async function authMiddleware(
     if (!user) {
       throw new AppErrors('User does not exist', 404)
     }
+    request.user = {
+      id: user.id,
+    }
     next()
   } catch (error) {
     throw new AppErrors('Invalid token', 401)
