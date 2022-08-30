@@ -30,7 +30,7 @@ class UsersRepository implements IUsersRepository {
     })
     await this.repository.save(user)
   }
-  list(): Promise<void> {
+  list(): Promise<User[]> {
     throw new Error('Method not implemented.')
   }
   findById(id: string): Promise<User> {
