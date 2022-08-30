@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { authMiddleware } from 'middleware/AuthMiddleware'
+import { authMiddleware } from '@shared/infra/http/AuthMiddleware'
 import multer from 'multer'
 
 import { CreateCategoryController } from '@modules/cars/useCases/createCategory/CreateCategoryController'

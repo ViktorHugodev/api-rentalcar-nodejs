@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe'
 
 import { ISpecificationRepository } from '@modules/cars/repositories/ISpecificationRepository'
 
-import { Category } from '../../entities/Category'
+import { Category } from '../../infra/typeorm/entities/Category'
 
 @injectable()
 class ListSpecificationUseCase {
