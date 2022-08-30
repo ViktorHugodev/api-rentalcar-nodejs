@@ -1,10 +1,10 @@
 import { Router } from 'express'
+import { authMiddleware } from 'middleware/AuthMiddleware'
 import multer from 'multer'
 
-import { authMiddleware } from '../middleware/AuthMiddleware'
-import { CreateCategoryController } from '../modules/cars/useCases/createCategory/CreateCategoryController'
-import { ImportCategoryController } from '../modules/cars/useCases/importCategory/ImportCategoryController'
-import { ListCategoryController } from '../modules/cars/useCases/listCategory/ListCategoryController'
+import { CreateCategoryController } from '@modules/cars/useCases/createCategory/CreateCategoryController'
+import { ImportCategoryController } from '@modules/cars/useCases/importCategory/ImportCategoryController'
+import { ListCategoryController } from '@modules/cars/useCases/listCategory/ListCategoryController'
 
 const upload = multer({ dest: './tmp/' })
 

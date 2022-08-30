@@ -2,7 +2,7 @@ import { parse } from 'csv-parse'
 import fs from 'fs'
 import { inject, injectable } from 'tsyringe'
 
-import { ICaterogyRepository } from '../../repositories/ICategoryRepository'
+import { ICaterogyRepository } from '@modules/cars/repositories/ICategoryRepository'
 
 interface IImportCategory {
   name: string
@@ -38,7 +38,9 @@ class ImportCategoryUseCase {
     categories.map(async (category) => {
       const { name, description } = category
 
-      const categoryAlreadyExists = await this.categoryRepository.findByName(name)
+      const categoryAlreadyExists = await this.categoryRepository.findByName(
+        name
+      )
       if (!categoryAlreadyExists) {
         await this.categoryRepository.create({ name, description })
       }

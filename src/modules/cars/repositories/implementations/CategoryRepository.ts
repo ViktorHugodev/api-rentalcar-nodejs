@@ -1,7 +1,8 @@
 import { Repository } from 'typeorm'
 
+import { Category } from '@modules/cars/entities/Category'
+
 import AppDataSource from '../../../../database/data-source'
-import { Category } from '../../entities/Category'
 import { ICaterogyRepository, IClassCategoryDTO } from '../ICategoryRepository'
 
 class CategoryRepository implements ICaterogyRepository {
