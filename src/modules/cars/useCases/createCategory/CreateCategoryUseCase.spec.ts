@@ -1,5 +1,5 @@
 import { AppErrors } from '@errors/AppError'
-import { CategoryRepositoryInMemory } from '@modules/cars/repositories/in-memory/CategoryRepositoryInMemory'
+import { CategoryRepositoryInMemory } from '@modules/cars/infra/typeorm/repositories/in-memory/CategoryRepositoryInMemory'
 
 import { CreateCategoryUseCase } from './CreateCategoryUseCase'
 

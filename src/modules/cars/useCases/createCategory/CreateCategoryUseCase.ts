@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe'
 
 import { AppErrors } from '@errors/AppError'
-import { ICaterogyRepository } from '@modules/cars/repositories/ICategoryRepository'
+import { ICaterogyRepository } from '@modules/cars/infra/typeorm/repositories/ICategoryRepository'
 
 interface ICategoryService {
   description: string

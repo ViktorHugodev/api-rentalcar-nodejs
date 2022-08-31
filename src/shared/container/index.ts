@@ -1,11 +1,11 @@
 import { container } from 'tsyringe'
 
+import { IUsersRepository } from '@modules/accounts/infra/typeorm/repositories/IUsersRepository'
 import { UsersRepository } from '@modules/accounts/infra/typeorm/repositories/UsersRepository'
-import { IUsersRepository } from '@modules/accounts/repositories/IUsersRepository'
 import { CategoryRepository } from '@modules/cars/infra/typeorm/repositories/CategoryRepository'
+import { ICaterogyRepository } from '@modules/cars/infra/typeorm/repositories/ICategoryRepository'
+import { ISpecificationRepository } from '@modules/cars/infra/typeorm/repositories/ISpecificationRepository'
 import { SpecificationRepository } from '@modules/cars/infra/typeorm/repositories/SpecificationRepository'
-import { ICaterogyRepository } from '@modules/cars/repositories/ICategoryRepository'
-import { ISpecificationRepository } from '@modules/cars/repositories/ISpecificationRepository'
 
 container.registerSingleton<ICaterogyRepository>(
   'CategoryRepository',

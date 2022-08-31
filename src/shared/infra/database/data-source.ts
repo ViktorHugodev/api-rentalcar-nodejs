@@ -1,14 +1,16 @@
 import 'reflect-metadata'
 import { DataSource } from 'typeorm'
 
-import { User } from '../../../modules/accounts/infra/typeorm/entities/User'
-import { Category } from '../../../modules/cars/infra/typeorm/entities/Category'
-import { Specification } from '../../../modules/cars/infra/typeorm/entities/Specification'
+import { User } from '@modules/accounts/infra/typeorm/entities/User'
+import { Category } from '@modules/cars/infra/typeorm/entities/Category'
+import { Specification } from '@modules/cars/infra/typeorm/entities/Specification'
+
+
 // Create Table
-// yarn typeorm migration:create ./src/database/migrations/CreateUser
+// yarn typeorm migration:create ./src/shared/infra/database/migrations/CreateUser
 
 // Run migrations
-// yarn typeorm migration:run -d ./src/database/data-source.ts
+// yarn typeorm migration:run -d ./src/shared/infra/database/data-source.ts
 const AppDataSource = new DataSource({
   type: 'postgres',
   port: 5432,
@@ -16,7 +18,7 @@ const AppDataSource = new DataSource({
   password: 'docker',
   database: 'rentx',
   entities: [Category, Specification, User],
-  migrations: ['./src/database/migrations/*.ts'],
+  migrations: ['./src/shared/infra/database/migrations/*.ts'],
 })
 export function createConnection(host = 'database'): Promise<DataSource> {
   return AppDataSource.setOptions({ host }).initialize()

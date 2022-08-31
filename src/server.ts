@@ -1,11 +1,15 @@
 import express, { NextFunction, Request, Response } from 'express'
 import swaggerUi from 'swagger-ui-express'
+import 'reflect-metadata'
 
 import 'express-async-errors'
-import { AppErrors } from './errors/AppError'
-import { createConnection } from './shared/infra/database/data-source'
-import { router } from './shared/infra/http/routes'
-import './shared/container'
+
+import '@shared/container'
+
+import { AppErrors } from '@errors/AppError'
+import { createConnection } from '@shared/infra/database/data-source'
+import { router } from '@shared/infra/http/routes'
+
 import swaggerConfig from './swagger.json'
 
 const app = express()
