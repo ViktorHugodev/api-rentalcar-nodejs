@@ -1,7 +1,7 @@
 import { AppErrors } from '@errors/AppError'
+import { UsersRepositoryInMemory } from '@modules/accounts/infra/typeorm/repositories/in-memory/UsersRepository'
 
 import { IUserCreateDTO } from '../../dtos/ICreateUserDTO'
-import { UsersRepositoryInMemory } from '../../repositories/in-memory/UsersRepository'
 import { CreateUserUseCase } from '../createUser/CreateUserUseCase'
 import { AuthUserUseCase } from './AuthUserUseCase'
 
