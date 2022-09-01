@@ -11,9 +11,11 @@ interface ICarsRepository {
     license_plate,
     fine_amount,
     description,
-  }: ICreateCarsDTO): Promise<void>
+  }: ICreateCarsDTO): Promise<Car>
   list(): Promise<Car[]>
   findByName(name: string): Promise<Car>
+
+  findByLicensePlate(license_plate: string): Promise<Car>
 }
 
 export { ICarsRepository }

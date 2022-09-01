@@ -25,6 +25,9 @@ class Car {
   fine_amount: number
 
   @Column()
+  available: boolean
+
+  @Column()
   daily_rate: number
 
   @CreateDateColumn()
@@ -33,8 +36,10 @@ class Car {
   constructor() {
     if (!this.id) {
       this.id = uuidv4()
+      this.available = true
+      this.created_at = new Date()
     }
   }
 }
 
-export { Car as Cars }
+export { Car }

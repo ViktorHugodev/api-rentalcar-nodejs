@@ -1,6 +1,6 @@
 import { ICreateCarsDTO } from '@modules/cars/dtos/ICreateCarsDTO'
 
-import { Cars as Car } from '../../entities/Car'
+import { Car } from '../../entities/Car'
 import { ICarsRepository } from '../ICarsRepository'
 
 class CarsRepositoryInMemory implements ICarsRepository {
@@ -13,7 +13,7 @@ class CarsRepositoryInMemory implements ICarsRepository {
     license_plate,
     fine_amount,
     description,
-  }: ICreateCarsDTO): Promise<void> {
+  }: ICreateCarsDTO): Promise<Car> {
     const car = new Car()
     Object.assign(car, {
       name,
@@ -25,12 +25,18 @@ class CarsRepositoryInMemory implements ICarsRepository {
       description,
     })
     this.cars.push(car)
+    return car
   }
   list(): Promise<Car[]> {
     throw new Error('Method not implemented.')
   }
-  findByName(name: string): Promise<Car> {
-    throw new Error('Method not implemented.')
+  async findByName(name: string): Promise<Car> {
+    const car = this.cars.find((car) => car.name === name)
+    return car
+  }
+  async findByLicensePlate(license_plate: string): Promise<Car> {
+    const car = this.cars.find((car) => car.license_plate === license_plate)
+    return car
   }
 }
 
