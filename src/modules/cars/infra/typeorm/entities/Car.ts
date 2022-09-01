@@ -1,5 +1,14 @@
-import { Column, CreateDateColumn, Entity, PrimaryColumn } from 'typeorm'
+import {
+  Column,
+  CreateDateColumn,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryColumn,
+} from 'typeorm'
 import { v4 as uuidv4 } from 'uuid'
+
+import { Category } from './Category'
 
 @Entity('cars')
 class Car {
@@ -18,6 +27,10 @@ class Car {
   @Column()
   category_id: string
 
+  @ManyToOne(() => Category)
+  @JoinColumn({ name: 'category_id' })
+  category: Category
+
   @Column()
   license_plate: string
 
@@ -25,7 +38,7 @@ class Car {
   fine_amount: number
 
   @Column()
-  available: boolean
+  avaible: boolean
 
   @Column()
   daily_rate: number
@@ -36,8 +49,7 @@ class Car {
   constructor() {
     if (!this.id) {
       this.id = uuidv4()
-      this.available = true
-      this.created_at = new Date()
+      this.avaible = true
     }
   }
 }

@@ -1,10 +1,10 @@
 import { Router } from 'express'
-import { authMiddleware } from '@shared/infra/http/AuthMiddleware'
 import multer from 'multer'
 
 import { CreateCategoryController } from '@modules/cars/useCases/createCategory/CreateCategoryController'
 import { ImportCategoryController } from '@modules/cars/useCases/importCategory/ImportCategoryController'
 import { ListCategoryController } from '@modules/cars/useCases/listCategory/ListCategoryController'
+import { authMiddleware } from '@shared/infra/http/AuthMiddleware'
 
 const upload = multer({ dest: './tmp/' })
 
@@ -13,8 +13,7 @@ const createCategoryController = new CreateCategoryController()
 const listCategoryController = new ListCategoryController()
 const importCategoryController = new ImportCategoryController()
 
-categoriesRoutes.use(authMiddleware)
-categoriesRoutes.post('/', createCategoryController.handle)
+categoriesRoutes.post('/', authMiddleware, createCategoryController.handle)
 categoriesRoutes.get('/', listCategoryController.handle)
 
 categoriesRoutes.post(

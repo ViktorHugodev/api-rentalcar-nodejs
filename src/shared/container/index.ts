@@ -2,7 +2,9 @@ import { container } from 'tsyringe'
 
 import { IUsersRepository } from '@modules/accounts/infra/typeorm/repositories/IUsersRepository'
 import { UsersRepository } from '@modules/accounts/infra/typeorm/repositories/UsersRepository'
+import { CarsRepository } from '@modules/cars/infra/typeorm/repositories/CarsRepository'
 import { CategoryRepository } from '@modules/cars/infra/typeorm/repositories/CategoryRepository'
+import { ICarsRepository } from '@modules/cars/infra/typeorm/repositories/ICarsRepository'
 import { ICaterogyRepository } from '@modules/cars/infra/typeorm/repositories/ICategoryRepository'
 import { ISpecificationRepository } from '@modules/cars/infra/typeorm/repositories/ISpecificationRepository'
 import { SpecificationRepository } from '@modules/cars/infra/typeorm/repositories/SpecificationRepository'
@@ -22,3 +24,4 @@ container.registerSingleton<IUsersRepository>(
   UsersRepository
 )
 
+container.registerSingleton<ICarsRepository>('CarsRepository', CarsRepository)

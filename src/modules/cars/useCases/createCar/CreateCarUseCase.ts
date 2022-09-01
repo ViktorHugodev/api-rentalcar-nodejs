@@ -13,10 +13,10 @@ interface IRequest {
   brand: string
   category_id: string
 }
-// @injectable()
+@injectable()
 class CreateCarUseCase {
   constructor(
-    // @inject('CarsRepository')
+    @inject('CarsRepository')
     private carsRepository: ICarsRepository
   ) {}
   async execute({
@@ -31,9 +31,11 @@ class CreateCarUseCase {
     const carAlreadyExists = await this.carsRepository.findByLicensePlate(
       license_plate
     )
+    console.log(carAlreadyExists)
     if (carAlreadyExists) {
       throw new AppErrors('Car already exists')
     }
+    console.log(carAlreadyExists)
     const car = await this.carsRepository.create({
       name,
       brand,
@@ -43,6 +45,7 @@ class CreateCarUseCase {
       fine_amount,
       description,
     })
+    console.log(car)
     return car
   }
 }
