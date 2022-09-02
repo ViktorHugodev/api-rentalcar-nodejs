@@ -4,7 +4,9 @@ import multer from 'multer'
 import { CreateCategoryController } from '@modules/cars/useCases/createCategory/CreateCategoryController'
 import { ImportCategoryController } from '@modules/cars/useCases/importCategory/ImportCategoryController'
 import { ListCategoryController } from '@modules/cars/useCases/listCategory/ListCategoryController'
-import { authMiddleware } from '@shared/infra/http/AuthMiddleware'
+
+import { ensureAdmin } from '../middleware/ensureAdmin'
+import { authMiddleware } from '../middleware/ensureAuth'
 
 const upload = multer({ dest: './tmp/' })
 
@@ -13,11 +15,19 @@ const createCategoryController = new CreateCategoryController()
 const listCategoryController = new ListCategoryController()
 const importCategoryController = new ImportCategoryController()
 
-categoriesRoutes.post('/', authMiddleware, createCategoryController.handle)
 categoriesRoutes.get('/', listCategoryController.handle)
 
 categoriesRoutes.post(
+  '/',
+  authMiddleware,
+  ensureAdmin,
+  createCategoryController.handle
+)
+
+categoriesRoutes.post(
   '/import',
+  ensureAdmin,
+  authMiddleware,
   upload.single('file'),
   importCategoryController.handle
 )
