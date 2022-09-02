@@ -4,9 +4,8 @@ import multer from 'multer'
 import { CreateCategoryController } from '@modules/cars/useCases/createCategory/CreateCategoryController'
 import { ImportCategoryController } from '@modules/cars/useCases/importCategory/ImportCategoryController'
 import { ListCategoryController } from '@modules/cars/useCases/listCategory/ListCategoryController'
-
-import { ensureAdmin } from '../middleware/ensureAdmin'
-import { authMiddleware } from '../middleware/ensureAuth'
+import { ensureAdmin } from '@shared/infra/http/middleware/ensureAdmin'
+import { authMiddleware } from '@shared/infra/http/middleware/ensureAuth'
 
 const upload = multer({ dest: './tmp/' })
 
