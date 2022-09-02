@@ -27,6 +27,7 @@ app.use(
     })
   }
 )
-createConnection()
+createConnection().then(() => console.log('Connection establisheddock'))
+.catch((error) => console.log('Error during initialize', error))
 
 app.listen(3333, () => console.log('Running on port 3333......'))
