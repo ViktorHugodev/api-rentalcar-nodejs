@@ -14,7 +14,6 @@ class CreateCarsController {
       fine_amount,
       description,
     } = request.body
-    console.log('oi')
     const createCarUseCase = container.resolve(CreateCarUseCase)
     const car = await createCarUseCase.execute({
       name,
@@ -25,7 +24,6 @@ class CreateCarsController {
       fine_amount,
       description,
     })
-    console.log('oi2')
     return response.status(201).json(car)
   }
 }

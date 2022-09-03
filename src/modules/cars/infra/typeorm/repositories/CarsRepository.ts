@@ -32,7 +32,7 @@ class CarsRepository implements ICarsRepository {
     await this.repository.save(car)
     return car
   }
-  list(): Promise<Car[]> {
+  listAvaible(): Promise<Car[]> {
     throw new Error('Method not implemented.')
   }
   findByName(name: string): Promise<Car> {

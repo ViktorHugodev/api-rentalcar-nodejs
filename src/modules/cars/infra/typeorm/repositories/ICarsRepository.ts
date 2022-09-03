@@ -12,7 +12,11 @@ interface ICarsRepository {
     fine_amount,
     description,
   }: ICreateCarsDTO): Promise<Car>
-  list(): Promise<Car[]>
+  listAvaible(
+    brand?: string,
+    category_id?: string,
+    name?: string
+  ): Promise<Car[]>
   findByName(name: string): Promise<Car>
 
   findByLicensePlate(license_plate: string): Promise<Car>

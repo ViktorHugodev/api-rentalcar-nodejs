@@ -27,9 +27,6 @@ class CarsRepositoryInMemory implements ICarsRepository {
     this.cars.push(car)
     return car
   }
-  list(): Promise<Car[]> {
-    throw new Error('Method not implemented.')
-  }
   async findByName(name: string): Promise<Car> {
     const car = this.cars.find((car) => car.name === name)
     return car
@@ -37,6 +34,21 @@ class CarsRepositoryInMemory implements ICarsRepository {
   async findByLicensePlate(license_plate: string): Promise<Car> {
     const car = this.cars.find((car) => car.license_plate === license_plate)
     return car
+  }
+  async listAvaible(
+    brand?: string,
+    category_id?: string,
+    name?: string
+  ): Promise<Car[]> {
+    const cars = this.cars
+      .filter((car) => car.avaible === true)
+      .filter(
+        (car) =>
+          (brand && car.brand === brand) ||
+          (name && car.name === name) ||
+          (category_id && car.category_id === category_id)
+      )
+    return cars
   }
 }
 

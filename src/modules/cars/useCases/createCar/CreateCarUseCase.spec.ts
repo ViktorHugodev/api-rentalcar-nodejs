@@ -57,7 +57,6 @@ describe('Create a car', () => {
       daily_rate: 100,
       fine_amount: 60,
     })
-    console.log(car)
     expect(car.avaible).toBe(true)
   })
 })
