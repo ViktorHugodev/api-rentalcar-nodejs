@@ -53,6 +53,10 @@ class CarsRepository implements ICarsRepository {
   findByName(name: string): Promise<Car> {
     throw new Error('Method not implemented.')
   }
+  async findById(id: string): Promise<Car> {
+    const car = await this.repository.findOneBy({ id })
+    return car
+  }
   async findByLicensePlate(license_plate: string): Promise<Car> {
     const car = await this.repository.findOneBy({ license_plate })
     return car
