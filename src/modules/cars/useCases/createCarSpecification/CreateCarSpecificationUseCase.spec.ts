@@ -1,15 +1,19 @@
 import { AppErrors } from '@errors/AppError'
 import { CarsRepositoryInMemory } from '@modules/cars/infra/typeorm/repositories/in-memory/CarsRepositoryInMemory'
+import { SpecificationRepositoryInMemory } from '@modules/cars/infra/typeorm/repositories/in-memory/SpecificationRepositoryInMemory'
 
 import { CreateCarSpeficiationUseCase } from './CreateCarSpecificationUseCase'
 
 let createCarSpeficiationUseCase: CreateCarSpeficiationUseCase
 let carsRepositoryInMemory: CarsRepositoryInMemory
+let specificationRepositoryInMemory: SpecificationRepositoryInMemory
 describe('Create car specification', () => {
   beforeEach(() => {
+    specificationRepositoryInMemory = new SpecificationRepositoryInMemory()
     carsRepositoryInMemory = new CarsRepositoryInMemory()
     createCarSpeficiationUseCase = new CreateCarSpeficiationUseCase(
-      carsRepositoryInMemory
+      carsRepositoryInMemory,
+      specificationRepositoryInMemory
     )
   })
 
@@ -23,10 +27,11 @@ describe('Create car specification', () => {
       daily_rate: 100,
       fine_amount: 60,
     })
-    const specification_id = '54321'
+    const specification_id = ['54321']
     await createCarSpeficiationUseCase.execute({
       car_id: car.id,
       specification_id,
     })
   })
+
 })

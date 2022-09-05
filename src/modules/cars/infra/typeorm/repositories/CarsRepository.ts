@@ -19,6 +19,7 @@ class CarsRepository implements ICarsRepository {
     license_plate,
     fine_amount,
     description,
+    speficiations,
   }: ICreateCarsDTO): Promise<Car> {
     const car = this.repository.create({
       name,
@@ -28,16 +29,17 @@ class CarsRepository implements ICarsRepository {
       license_plate,
       fine_amount,
       description,
+      speficiations,
     })
     await this.repository.save(car)
     return car
   }
+
   async listAvaible(
     brand?: string,
     name?: string,
     category_id?: string
   ): Promise<Car[]> {
-    console.log('TEST-', brand, name, category_id)
     const carsQuery = this.repository
       .createQueryBuilder('c')
       .where('avaible = :avaible', { avaible: true })
@@ -50,13 +52,16 @@ class CarsRepository implements ICarsRepository {
     const cars = await carsQuery.getMany()
     return cars
   }
+
   findByName(name: string): Promise<Car> {
     throw new Error('Method not implemented.')
   }
+
   async findById(id: string): Promise<Car> {
     const car = await this.repository.findOneBy({ id })
     return car
   }
+
   async findByLicensePlate(license_plate: string): Promise<Car> {
     const car = await this.repository.findOneBy({ license_plate })
     return car
