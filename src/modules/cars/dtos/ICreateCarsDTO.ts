@@ -9,6 +9,7 @@ interface ICreateCarsDTO {
   brand: string
   category_id: string
   speficiations?: Specification[]
+  id?: string
 }
 
 export { ICreateCarsDTO }

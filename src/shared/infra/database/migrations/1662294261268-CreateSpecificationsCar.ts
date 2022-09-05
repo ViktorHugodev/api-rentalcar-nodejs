@@ -56,6 +56,6 @@ export class CreateSpecificationsCar1662294261268
   public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropForeignKey('speficiations_cars', 'FKSpecificationCar')
     await queryRunner.dropForeignKey('speficiations_cars', 'FKCarSpecification')
-    await queryRunner.dropTable('specifications_cars')
+    await queryRunner.dropTable('speficiations_cars')
   }
 }
