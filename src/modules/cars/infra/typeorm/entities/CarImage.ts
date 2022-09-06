@@ -7,7 +7,7 @@ class CarImage {
   id?: string
 
   @Column()
-  car_image: string
+  image_name: string
 
   @Column()
   car_id: string
