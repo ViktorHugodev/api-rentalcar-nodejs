@@ -7,6 +7,7 @@
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0:9229 --transpile-only --ignore-watch node_modules --respawn src/server.ts ",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "migration:run": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli migration:run -d ./src/shared/infra/database/data-source.ts",
+    "migration:create":"yarn typeorm migration:create",
     "debug": "node -r ts-node/register --inspect=0.0.0.0:9229 src/*.ts",
     "test": "jest",
     "seed:admin": "ts-node-dev -r tsconfig-paths/register src/shared/infra/database/seed/admin.ts"
