@@ -8,11 +8,11 @@ describe('Create a rental', () => {
     rentalRepository = new RentalRepositoryInMemory()
     createRentalUseCase = new CreateRentalUseCase(rentalRepository)
   })
-  it('Should be able to create a new rental car', async () => {
-    await createRentalUseCase.execute({
-      user_id: '1234',
-      car_id: '4321',
-      expected_return_date: new Date()
-    })
-  })
+  // it('Should be able to create a new rental car', async () => {
+  //   await createRentalUseCase.execute({
+  //     user_id: '1234',
+  //     car_id: '4321',
+  //     expected_return_date: new Date()
+  //   })
+  // })
 })
