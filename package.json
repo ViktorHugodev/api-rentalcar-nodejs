@@ -7,7 +7,7 @@
     "dev": "ts-node-dev -r tsconfig-paths/register --inspect=0.0.0.0:9229 --transpile-only --ignore-watch node_modules --respawn src/server.ts ",
     "typeorm": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli",
     "migration:run": "ts-node-dev -r tsconfig-paths/register ./node_modules/typeorm/cli migration:run -d ./src/shared/infra/database/data-source.ts",
-    "migration:create":"yarn typeorm migration:create",
+    "migration:create": "yarn typeorm migration:create",
     "debug": "node -r ts-node/register --inspect=0.0.0.0:9229 src/*.ts",
     "test": "jest",
     "seed:admin": "ts-node-dev -r tsconfig-paths/register src/shared/infra/database/seed/admin.ts"
@@ -41,6 +41,7 @@
     "@types/uuid": "^8.3.4",
     "bcrypt": "^5.0.1",
     "csv-parse": "^5.3.0",
+    "dayjs": "^1.11.5",
     "express": "^4.18.1",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^8.5.1",
@@ -48,9 +49,9 @@
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
     "swagger-ui-express": "^4.5.0",
+    "ts-jest": "^28.0.8",
     "tsyringe": "^4.7.0",
     "typeorm": "^0.3.6",
-    "uuid": "^8.3.2",
-    "ts-jest": "^28.0.8"
+    "uuid": "^8.3.2"
   }
 }
