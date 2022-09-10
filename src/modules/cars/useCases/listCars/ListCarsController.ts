@@ -6,7 +6,7 @@ import { ListCarsUseCase } from './ListCarsUseCase'
 class ListCarsController {
   async handle(request: Request, response: Response): Promise<Response> {
     const { name, category_id, brand } = request.query
-    console.log(request.query)
+
     const listCarsUseCase = container.resolve(ListCarsUseCase)
     const cars = await listCarsUseCase.execute({
       name: name as string,

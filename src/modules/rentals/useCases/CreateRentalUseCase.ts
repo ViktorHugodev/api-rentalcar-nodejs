@@ -1,3 +1,5 @@
+import { inject, injectable } from 'tsyringe'
+
 import { AppErrors } from '@errors/AppError'
 import { IDateProvider } from '@shared/container/DateProvider/IDateProvider'
 
@@ -9,10 +11,12 @@ interface IRequest {
   user_id: string
   expected_return_date: Date
 }
-
+@injectable()
 class CreateRentalUseCase {
   constructor(
+    @inject('RentalRepository')
     private rentalRepository: IRentalRepository,
+    @inject('DateProvider')
     private dateProvider: IDateProvider
   ) {}
 
@@ -21,6 +25,7 @@ class CreateRentalUseCase {
     user_id,
     expected_return_date,
   }: IRequest): Promise<RentalCar> {
+
     const minimumHoursForRent = 24
     const carUnavailable = await this.rentalRepository.findOpenRentalByCar(
       car_id
