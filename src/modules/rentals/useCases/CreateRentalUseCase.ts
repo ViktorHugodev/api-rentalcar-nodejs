@@ -1,12 +1,9 @@
-import dayjs from 'dayjs'
-import utc from 'dayjs/plugin/utc'
-
 import { AppErrors } from '@errors/AppError'
+import { IDateProvider } from '@shared/container/DateProvider/IDateProvider'
 
 import { RentalCar } from '../infra/typeorm/entities/RentalCar'
 import { IRentalRepository } from '../infra/typeorm/repositories/IRentalRepository'
 
-dayjs.extend(utc)
 interface IRequest {
   car_id: string
   user_id: string
@@ -14,7 +11,10 @@ interface IRequest {
 }
 
 class CreateRentalUseCase {
-  constructor(private rentalRepository: IRentalRepository) {}
+  constructor(
+    private rentalRepository: IRentalRepository,
+    private dateProvider: IDateProvider
+  ) {}
 
   async execute({
     car_id,
@@ -37,13 +37,11 @@ class CreateRentalUseCase {
       throw new AppErrors('Rental is not available for this user right now')
     }
 
-    const dateNow = dayjs().utc().local().format()
-    const expectedReturnDateFormat = dayjs(expected_return_date)
-      .utc()
-      .local()
-      .format()
-
-    const compare = dayjs(expectedReturnDateFormat).diff(dateNow, 'hours')
+    const dateNow = this.dateProvider.dateNow()
+    const compare = this.dateProvider.compareInHours(
+      dateNow,
+      expected_return_date
+    )
     if (compare < minimumHoursForRent) {
       throw new AppErrors('Invalid return time!')
     }
