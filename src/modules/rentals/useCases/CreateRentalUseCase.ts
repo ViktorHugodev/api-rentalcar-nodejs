@@ -1,3 +1,4 @@
+import { ICarsRepository } from '@modules/cars/infra/typeorm/repositories/ICarsRepository';
 import { inject, injectable } from 'tsyringe'
 
 import { AppErrors } from '@errors/AppError'
@@ -17,7 +18,9 @@ class CreateRentalUseCase {
     @inject('RentalRepository')
     private rentalRepository: IRentalRepository,
     @inject('DateProvider')
-    private dateProvider: IDateProvider
+    private dateProvider: IDateProvider,
+    @inject('CarsRepository')
+    private carsRepository: ICarsRepository
   ) {}
 
   async execute({
@@ -55,6 +58,9 @@ class CreateRentalUseCase {
       user_id,
       expected_return_date,
     })
+
+    await this.carsRepository.updateAvailable(car_id, false)
+
     return rental
   }
 }

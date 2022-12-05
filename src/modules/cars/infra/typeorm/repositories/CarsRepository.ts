@@ -11,6 +11,7 @@ class CarsRepository implements ICarsRepository {
   constructor() {
     this.repository = AppDataSource.getRepository(Car)
   }
+
   async create({
     name,
     brand,
@@ -67,6 +68,17 @@ class CarsRepository implements ICarsRepository {
   async findByLicensePlate(license_plate: string): Promise<Car> {
     const car = await this.repository.findOneBy({ license_plate })
     return car
+  }
+  async updateAvailable(id: string, avaible: boolean): Promise<void> {
+    await this.repository
+      .createQueryBuilder()
+      .update()
+      .set({
+        avaible
+      })
+      .where('id = :id')
+      .setParameters({ id })
+      .execute()
   }
 }
 export { CarsRepository }

@@ -14,6 +14,7 @@ interface IRentalRepository {
   }: ICreatedRentalDTO): Promise<RentalCar>
   findOpenRentalByCar(car_id: string): Promise<RentalCar>
   findOpenRentalByUser(user_id: string): Promise<RentalCar>
+  findById(id: string): Promise<RentalCar>
 }
 
 export { IRentalRepository, ICreatedRentalDTO }

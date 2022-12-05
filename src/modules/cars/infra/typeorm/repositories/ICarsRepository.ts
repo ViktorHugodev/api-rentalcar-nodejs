@@ -19,7 +19,7 @@ interface ICarsRepository {
   ): Promise<Car[]>
   findByName(name: string): Promise<Car>
   findById(id: string): Promise<Car>
-
+  updateAvailable(id: string, avaible: boolean): Promise<void>
   findByLicensePlate(license_plate: string): Promise<Car>
 }
 

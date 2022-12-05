@@ -10,12 +10,12 @@ class RentalRepository implements IRentalRepository {
   constructor() {
     this.repository = AppDataSource.getRepository(RentalCar)
   }
+
   async create({
     car_id,
     user_id,
     expected_return_date,
   }: ICreatedRentalDTO): Promise<RentalCar> {
-
     const rental = this.repository.create({
       car_id,
       user_id,
@@ -31,6 +31,10 @@ class RentalRepository implements IRentalRepository {
   async findOpenRentalByUser(user_id: string): Promise<RentalCar> {
     const user = await this.repository.findOneBy({ user_id })
     return user
+  }
+  async findById(id: string): Promise<RentalCar> {
+    const rental = await this.repository.findOneBy({ id })
+    return rental
   }
 }
 
