@@ -2,6 +2,9 @@ import { RentalCar } from '../../entities/RentalCar'
 import { ICreatedRentalDTO, IRentalRepository } from '../IRentalRepository'
 
 class RentalRepositoryInMemory implements IRentalRepository {
+  findById(id: string): Promise<RentalCar> {
+    throw new Error('Method not implemented.')
+  }
   rentals: RentalCar[] = []
 
   async create({

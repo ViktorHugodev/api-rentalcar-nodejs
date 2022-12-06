@@ -1,4 +1,4 @@
-import { Repository } from 'typeorm'
+import { IsNull, Repository } from 'typeorm'
 
 import AppDataSource from '@shared/infra/database/data-source'
 
@@ -13,23 +13,39 @@ class RentalRepository implements IRentalRepository {
 
   async create({
     car_id,
-    user_id,
     expected_return_date,
+    user_id,
+    id,
+    end_date,
+    total,
   }: ICreatedRentalDTO): Promise<RentalCar> {
     const rental = this.repository.create({
       car_id,
       user_id,
       expected_return_date,
+      id,
+      end_date,
+      total,
     })
     await this.repository.save(rental)
     return rental
   }
   async findOpenRentalByCar(car_id: string): Promise<RentalCar> {
-    const car = await this.repository.findOneBy({ car_id })
+    const car = await this.repository.findOne({
+      where: {
+        car_id,
+        end_date: IsNull(),
+      },
+    })
     return car
   }
   async findOpenRentalByUser(user_id: string): Promise<RentalCar> {
-    const user = await this.repository.findOneBy({ user_id })
+    const user = await this.repository.findOne({
+      where: {
+        user_id,
+        end_date: IsNull(),
+      },
+    })
     return user
   }
   async findById(id: string): Promise<RentalCar> {

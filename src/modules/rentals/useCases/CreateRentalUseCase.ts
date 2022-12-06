@@ -40,7 +40,7 @@ class CreateRentalUseCase {
     const rentalOpenToUser = await this.rentalRepository.findOpenRentalByUser(
       user_id
     )
-
+    console.log('RENTALOPENM', rentalOpenToUser)
     if (rentalOpenToUser) {
       throw new AppErrors('Rental is not available for this user right now')
     }
