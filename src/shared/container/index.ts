@@ -1,7 +1,9 @@
 import { container } from 'tsyringe'
 
 import { IUsersRepository } from '@modules/accounts/infra/typeorm/repositories/IUsersRepository'
+import { IUsersTokenRepository } from '@modules/accounts/infra/typeorm/repositories/IUsersTokenRepository'
 import { UsersRepository } from '@modules/accounts/infra/typeorm/repositories/UsersRepository'
+import { UsersTokenRepository } from '@modules/accounts/infra/typeorm/repositories/UsersTokenRepository'
 import { CarImageRepository } from '@modules/cars/infra/typeorm/repositories/CarsImageRepository'
 import { CarsRepository } from '@modules/cars/infra/typeorm/repositories/CarsRepository'
 import { CategoryRepository } from '@modules/cars/infra/typeorm/repositories/CategoryRepository'
@@ -41,6 +43,10 @@ container.registerSingleton<ICarsImageRepository>(
 container.registerSingleton<IRentalRepository>(
   'RentalRepository',
   RentalRepository
+)
+container.registerSingleton<IUsersTokenRepository>(
+  'UsersTokenRepository',
+  UsersTokenRepository
 )
 
 container.registerSingleton<IDateProvider>('DateProvider', DateProvider)
