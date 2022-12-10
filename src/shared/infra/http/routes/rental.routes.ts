@@ -10,7 +10,7 @@ const rentalRoutes = Router()
 const createRentalController = new CreateRentalController()
 const devolutionRentalController = new DevolutionRentalController()
 const listRentalByUserController = new ListRentalByUserController()
-
+ 
 rentalRoutes.use(authMiddleware)
 rentalRoutes.post('/',createRentalController.handle)
 rentalRoutes.get('/list',  listRentalByUserController.handle)
