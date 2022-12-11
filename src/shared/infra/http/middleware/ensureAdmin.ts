@@ -10,6 +10,7 @@ export async function ensureAdmin(
   const { id } = request.user
   const usersRepository = new UsersRepository()
   const user = await usersRepository.findById(id)
+  console.log('🚀 ~ file: ensureAdmin.ts:13 ~ user', user)
   if (!user.isAdmin) {
     throw new Error('User isnt an admin')
   }

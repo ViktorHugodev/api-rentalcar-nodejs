@@ -50,3 +50,4 @@ container.registerSingleton<IUsersTokenRepository>(
 )
 
 container.registerSingleton<IDateProvider>('DateProvider', DateProvider)
+

@@ -1,10 +1,10 @@
-import { IDateProvider } from '@shared/container/DateProvider/IDateProvider';
 import { sign, verify } from 'jsonwebtoken'
 import { inject, injectable } from 'tsyringe'
 
 import auth from '@config/auth'
 import { AppErrors } from '@errors/AppError'
 import { IUsersTokenRepository } from '@modules/accounts/infra/typeorm/repositories/IUsersTokenRepository'
+import { IDateProvider } from '@shared/container/DateProvider/IDateProvider'
 
 interface IPayload {
   sub: string
@@ -14,12 +14,12 @@ interface IPayload {
 @injectable()
 class RefreshTokenUseCase {
   constructor(
-    @inject('UserTokenRepository')
+    @inject('UsersTokenRepository')
     private usersTokenRepository: IUsersTokenRepository,
     @inject('DateProvider')
     private dateProvider: IDateProvider
   ) {}
-  async execute(token: string) {
+  async execute(token: string): Promise<string> {
     const { expires_in_refresh_token, secret_refresh_token } = auth
     const { sub: user_id, email } = verify(
       token,
@@ -40,10 +40,10 @@ class RefreshTokenUseCase {
       expiresIn: expires_in_refresh_token,
     })
     const expires_date = this.dateProvider.addDays(30)
-    await this.usersTokenRepository.create({
+    const test = await this.usersTokenRepository.create({
       expires_date,
       refresh_token,
-      user_id
+      user_id,
     })
     return refresh_token
   }
