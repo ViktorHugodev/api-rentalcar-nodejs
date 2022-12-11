@@ -11,6 +11,8 @@ class UsersTokenRepository implements IUsersTokenRepository {
   constructor() {
     this.repository = AppDataSource.getRepository(UsersToken)
   }
+
+
   async create({
     user_id,
     refresh_token,
@@ -23,6 +25,21 @@ class UsersTokenRepository implements IUsersTokenRepository {
     })
     await this.repository.save(userToken)
     return userToken
+  }
+  async findByUserIdAndRefresh(
+    id: string,
+    refresh_token: string
+  ): Promise<UsersToken> {
+    const userToken = await this.repository.findOne({
+      where: {
+        user_id: id,
+        refresh_token,
+      },
+    })
+    return userToken
+  }
+  async deleteById(id: string): Promise<void> {
+    await this.repository.delete(id)
   }
 }
 

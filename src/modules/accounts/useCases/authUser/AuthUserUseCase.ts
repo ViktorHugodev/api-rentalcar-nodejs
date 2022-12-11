@@ -62,12 +62,11 @@ class AuthUserUseCase {
 
     const refresh_token_expires_date = this.dateProvider.addDays(30)
     
-    const create = await this.usersTokenRepository.create({
+    await this.usersTokenRepository.create({
       user_id: user.id,
       expires_date: refresh_token_expires_date,
       refresh_token,
     })
-    console.log('🚀 ~ file: AuthUserUseCase.ts:70 ~ AuthUserUseCase ~ execute ~ create', create)
 
     const tokenReturn = {
       user: {
