@@ -3,7 +3,6 @@ import { verify } from 'jsonwebtoken'
 
 import auth from '@config/auth'
 import { AppErrors } from '@errors/AppError'
-import { UsersRepository } from '@modules/accounts/infra/typeorm/repositories/UsersRepository'
 import { UsersTokenRepository } from '@modules/accounts/infra/typeorm/repositories/UsersTokenRepository'
 
 export async function authMiddleware(
@@ -12,6 +11,7 @@ export async function authMiddleware(
   next: NextFunction
 ) {
   const authHeaders = request.headers.authorization
+  console.log('🚀 ~ file: ensureAuth.ts:14 ~ authHeaders', authHeaders)
   const usersTokenRepotory = new UsersTokenRepository()
   if (!authHeaders) {
     throw new AppErrors('Token is missing', 401)

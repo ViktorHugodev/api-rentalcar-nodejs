@@ -17,6 +17,8 @@ import { RentalRepository } from '@modules/rentals/infra/typeorm/repositories/Re
 import { IDateProvider } from '@shared/container/DateProvider/IDateProvider'
 
 import { DateProvider } from './DateProvider/implementations/DayJsDateProvider'
+import { IMailProvider } from './MailProvider/IMailProvider'
+import { EtherealMailProvider } from './MailProvider/implementations/EtherealMailProvider'
 
 container.registerSingleton<ICaterogyRepository>(
   'CategoryRepository',
@@ -51,3 +53,7 @@ container.registerSingleton<IUsersTokenRepository>(
 
 container.registerSingleton<IDateProvider>('DateProvider', DateProvider)
 
+container.registerInstance<IMailProvider>(
+  'EtherealMailProvider',
+  new EtherealMailProvider()
+)
