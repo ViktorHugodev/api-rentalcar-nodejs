@@ -1,3 +1,4 @@
+import { resolve } from 'path'
 import { inject, injectable } from 'tsyringe'
 import { v4 as uuidv4 } from 'uuid'
 
@@ -20,6 +21,7 @@ class SendForgotPasswordUseCase {
     private etherealMailProvider: IMailProvider
   ) {}
   async execute(email: string) {
+    const templatePath = resolve(__dirname, '../../views/forgotPassword.hbs')
     const user = await this.usersRepository.findByEmail(email)
     if (!user) {
       throw new AppErrors('User does not exists')
@@ -31,11 +33,15 @@ class SendForgotPasswordUseCase {
       user_id: user.id,
       expires_date,
     })
-
+    const variables = {
+      name: user.name,
+      link: `${process.env.FORGOT_URL}${token}`
+    }
     await this.etherealMailProvider.sendMail(
       email,
       'Recuperação de senha',
-      `O link para o reset é ${token}`
+      variables,
+      templatePath
     )
   }
 }
