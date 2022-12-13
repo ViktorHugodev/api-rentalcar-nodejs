@@ -13,6 +13,7 @@ class UsersRepository implements IUsersRepository {
     this.repository = AppDataSource.getRepository(User)
   }
 
+
   async create({
     name,
     email,
@@ -42,6 +43,7 @@ class UsersRepository implements IUsersRepository {
     const user = await this.repository.findOneBy({ email })
     return user
   }
+
 }
 
 export { UsersRepository }

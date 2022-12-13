@@ -11,7 +11,7 @@ class SendForgotPasswordController {
       SendForgotPasswordUseCase
     )
     await sendForgotPasswordUseCase.execute(email)
-    return response.status(200)
+    return response.send()
   }
 }
 

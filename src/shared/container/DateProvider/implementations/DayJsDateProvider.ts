@@ -6,7 +6,6 @@ import { IDateProvider } from '../IDateProvider'
 dayjs.extend(utc)
 class DateProvider implements IDateProvider {
 
-
   convertToUTC(date: Date): string {
     return dayjs(date).utc().local().format()
   }
@@ -29,5 +28,9 @@ class DateProvider implements IDateProvider {
   addHours(hours: number): Date {
     return dayjs().add(hours, 'hour').toDate()
   }
+  compareIfBefore(start_date: Date, end_data: Date): boolean {
+    return dayjs(start_date).isBefore(dayjs(end_data))
+  }
+
 }
 export { DateProvider }

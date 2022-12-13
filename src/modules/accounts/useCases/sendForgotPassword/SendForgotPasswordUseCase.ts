@@ -35,7 +35,7 @@ class SendForgotPasswordUseCase {
     })
     const variables = {
       name: user.name,
-      link: `${process.env.FORGOT_URL}${token}`
+      link: `${process.env.FORGOT_URL} - ${token}`
     }
     await this.etherealMailProvider.sendMail(
       email,

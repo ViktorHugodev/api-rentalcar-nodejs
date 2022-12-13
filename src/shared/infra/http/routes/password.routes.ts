@@ -1,14 +1,12 @@
 import { Router } from 'express'
 
+import { ResetPasswordUserController } from '@modules/accounts/useCases/resetPassword/ResetPasswordUserController'
 import { SendForgotPasswordController } from '@modules/accounts/useCases/sendForgotPassword/SendForgotPasswordController'
-import { authMiddleware } from '@shared/infra/http/middleware/ensureAuth'
 
 const passwordResetRoutes = Router()
 
 const sendForgotPasswordController = new SendForgotPasswordController()
-
+const resetPasswordUserController = new ResetPasswordUserController()
 passwordResetRoutes.post('/forgot', sendForgotPasswordController.handle)
-
-export {
-  passwordResetRoutes
-}
+passwordResetRoutes.post('/reset', resetPasswordUserController.handle)
+export { passwordResetRoutes }
