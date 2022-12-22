@@ -3,7 +3,6 @@ import { verify } from 'jsonwebtoken'
 
 import auth from '@config/auth'
 import { AppErrors } from '@errors/AppError'
-import { UsersTokenRepository } from '@modules/accounts/infra/typeorm/repositories/UsersTokenRepository'
 
 export async function authMiddleware(
   request: Request,
@@ -11,8 +10,7 @@ export async function authMiddleware(
   next: NextFunction
 ) {
   const authHeaders = request.headers.authorization
-  console.log('🚀 ~ file: ensureAuth.ts:14 ~ authHeaders', authHeaders)
-  const usersTokenRepotory = new UsersTokenRepository()
+
   if (!authHeaders) {
     throw new AppErrors('Token is missing', 401)
   }
@@ -21,14 +19,8 @@ export async function authMiddleware(
 
   try {
     // now que secret for login its the refresh token
-    const { sub: user_id } = verify(token, auth.secret_refresh_token)
-    const user = await usersTokenRepotory.findByUserIdAndRefresh(
-      user_id as string,
-      token
-    )
-    if (!user) {
-      throw new AppErrors('User does not exist', 404)
-    }
+    const { sub: user_id } = verify(token, auth.secret_token)
+
     request.user = {
       id: user_id as string,
     }

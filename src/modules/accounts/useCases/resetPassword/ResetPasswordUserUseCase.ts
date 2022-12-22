@@ -26,7 +26,10 @@ class ResetPasswordUserUseCase {
       const userToken = await this.usersTokenRepository.findByRefreshToken(
         token
       )
-      console.log('🚀 ~ file: ResetPasswordUserUseCase.ts:29 ~ ResetPasswordUserUseCase ~ execute ~ userToken', userToken)
+      console.log(
+        '🚀 ~ file: ResetPasswordUserUseCase.ts:29 ~ ResetPasswordUserUseCase ~ execute ~ userToken',
+        userToken
+      )
       if (!userToken) {
         throw new AppErrors('Token invalid!')
       }
