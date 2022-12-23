@@ -10,7 +10,7 @@ import { ensureAdmin } from '@shared/infra/http/middleware/ensureAdmin'
 import { authMiddleware } from '@shared/infra/http/middleware/ensureAuth'
 
 const carsRoutes = Router()
-const uploadImagesCar = multer(uploadConfig.upload('./tmp/cars'))
+const uploadImagesCar = multer(uploadConfig)
 const createCarsController = new CreateCarsController()
 const listCarsController = new ListCarsController()
 const createCarSpecificationController = new CreateCarSpecificationController()

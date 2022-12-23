@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe'
 
 import { IUsersRepository } from '@modules/accounts/infra/typeorm/repositories/IUsersRepository'
-import { deleteFile } from '@utils/file'
+import { IStorageProvider } from '@shared/container/StorageProvider/IStorageProvider'
 
 interface IRequest {
   user_id: string
@@ -11,12 +11,19 @@ interface IRequest {
 class UpdateUserAvatarUseCase {
   constructor(
     @inject('UsersRepository')
-    private userRepository: IUsersRepository
+    private userRepository: IUsersRepository,
+    @inject('LocalStorageProvider')
+    private localStorageProvider: IStorageProvider
   ) {}
   async execute({ user_id, avatar_file }: IRequest): Promise<void> {
     const user = await this.userRepository.findById(user_id)
-    if (user.avatar) await deleteFile(`./tmp/avatar/${user.avatar}`)
+
+    if (user.avatar){
+      await this.localStorageProvider.delete(user.avatar, 'avatar')
+    }
     user.avatar = avatar_file
+    await this.localStorageProvider.save(avatar_file, 'avatar')
+
 
     await this.userRepository.create(user)
   }
