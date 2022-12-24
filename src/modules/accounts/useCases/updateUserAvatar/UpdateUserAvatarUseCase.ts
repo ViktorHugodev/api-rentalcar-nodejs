@@ -12,7 +12,7 @@ class UpdateUserAvatarUseCase {
   constructor(
     @inject('UsersRepository')
     private userRepository: IUsersRepository,
-    @inject('LocalStorageProvider')
+    @inject('S3StorageProvider')
     private localStorageProvider: IStorageProvider
   ) {}
   async execute({ user_id, avatar_file }: IRequest): Promise<void> {

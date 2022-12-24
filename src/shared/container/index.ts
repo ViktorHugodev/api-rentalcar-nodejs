@@ -21,6 +21,7 @@ import { IMailProvider } from './MailProvider/IMailProvider'
 import { EtherealMailProvider } from './MailProvider/implementations/EtherealMailProvider'
 import { LocalStorageProvider } from './StorageProvider/implementations/LocalStorageProvider'
 import { IStorageProvider } from './StorageProvider/IStorageProvider'
+import { S3StorageProvider } from './StorageProvider/implementations/S3StorageProvider'
 
 container.registerSingleton<ICaterogyRepository>(
   'CategoryRepository',
@@ -55,6 +56,10 @@ container.registerSingleton<IUsersTokenRepository>(
 
 container.registerSingleton<IDateProvider>('DateProvider', DateProvider)
 
+container.registerSingleton<IStorageProvider>(
+  'S3StorageProvider',
+  S3StorageProvider
+)
 container.registerSingleton<IStorageProvider>(
   'LocalStorageProvider',
   LocalStorageProvider
