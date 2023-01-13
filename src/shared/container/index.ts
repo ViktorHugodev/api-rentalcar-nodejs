@@ -55,15 +55,19 @@ container.registerSingleton<IUsersTokenRepository>(
 )
 
 container.registerSingleton<IDateProvider>('DateProvider', DateProvider)
+const diskStorage = {
+  local: LocalStorageProvider,
+  s3: S3StorageProvider,
+}
 
 container.registerSingleton<IStorageProvider>(
   'S3StorageProvider',
-  S3StorageProvider
+  diskStorage[process.env.disk]
 )
-container.registerSingleton<IStorageProvider>(
-  'LocalStorageProvider',
-  LocalStorageProvider
-)
+// container.registerSingleton<IStorageProvider>(
+//   'LocalStorageProvider',
+//   LocalStorageProvider
+// )
 
 container.registerInstance<IMailProvider>(
   'EtherealMailProvider',

@@ -10,8 +10,11 @@ import { AppErrors } from '@errors/AppError'
 import { createConnection } from '@shared/infra/database/data-source'
 import { router } from '@shared/infra/http/routes'
 
+import dotenv from 'dotenv'
+
 import swaggerConfig from './swagger.json'
 
+dotenv.config()
 const app = express()
 app.use(express.json())
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig))
