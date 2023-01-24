@@ -17,8 +17,8 @@ class SendForgotPasswordUseCase {
     private usersTokenRepository: IUsersTokenRepository,
     @inject('DateProvider')
     private dateProvider: IDateProvider,
-    @inject('EtherealMailProvider')
-    private etherealMailProvider: IMailProvider
+    @inject('MailProvider')
+    private mailProvider: IMailProvider
   ) {}
   async execute(email: string) {
     const templatePath = resolve(__dirname, '../../views/forgotPassword.hbs')
@@ -37,7 +37,7 @@ class SendForgotPasswordUseCase {
       name: user.name,
       link: `${process.env.FORGOT_URL} - ${token}`
     }
-    await this.etherealMailProvider.sendMail(
+    await this.mailProvider.sendMail(
       email,
       'Recuperação de senha',
       variables,

@@ -10,7 +10,6 @@ class UserMapper {
     driver_license,
     avatar,
     created_at,
-    
     getAvatarUrl,
   }: User): IUserResponseDTO {
     const user = instanceToInstance({
