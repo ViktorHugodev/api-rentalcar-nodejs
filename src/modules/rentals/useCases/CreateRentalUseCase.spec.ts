@@ -1,9 +1,9 @@
 import dayjs from 'dayjs'
 
 import { AppErrors } from '@errors/AppError'
+import { CarsRepositoryInMemory } from '@modules/cars/infra/typeorm/repositories/in-memory/CarsRepositoryInMemory'
 import { DateProvider } from '@shared/container/DateProvider/implementations/DayJsDateProvider'
 
-import { CarsRepositoryInMemory } from '@modules/cars/infra/typeorm/repositories/in-memory/CarsRepositoryInMemory'
 import { RentalRepositoryInMemory } from '../infra/typeorm/repositories/in-memory/RentalRepositoryInMemory'
 import { CreateRentalUseCase } from './CreateRentalUseCase'
 

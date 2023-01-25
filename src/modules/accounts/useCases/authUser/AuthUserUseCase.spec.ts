@@ -1,5 +1,7 @@
 import { AppErrors } from '@errors/AppError'
 import { UsersRepositoryInMemory } from '@modules/accounts/infra/typeorm/repositories/in-memory/UsersRepository'
+import { UsersTokenRepository } from '@modules/accounts/infra/typeorm/repositories/UsersTokenRepository'
+import { DateProvider } from '@shared/container/DateProvider/implementations/DayJsDateProvider'
 
 import { IUserCreateDTO } from '../../dtos/ICreateUserDTO'
 import { CreateUserUseCase } from '../createUser/CreateUserUseCase'
@@ -8,10 +10,18 @@ import { AuthUserUseCase } from './AuthUserUseCase'
 let authUserUseCase: AuthUserUseCase
 let userRepositoryInMemory: UsersRepositoryInMemory
 let createUserUseCase: CreateUserUseCase
+let usersTokenRepository: UsersTokenRepository
+let dateProvider: DateProvider
 describe('Authenticate user', () => {
   beforeEach(() => {
+    dateProvider = new DateProvider()
     userRepositoryInMemory = new UsersRepositoryInMemory()
-    authUserUseCase = new AuthUserUseCase(userRepositoryInMemory)
+    usersTokenRepository = new UsersTokenRepository()
+    authUserUseCase = new AuthUserUseCase(
+      userRepositoryInMemory,
+      usersTokenRepository,
+      dateProvider
+    )
     createUserUseCase = new CreateUserUseCase(userRepositoryInMemory)
   })
 

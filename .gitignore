@@ -2,5 +2,8 @@ node_modules
 .env
 .idea
 dist
-tmp
+tmp/*
+!tmp/.gitkeep
 README.md
+rentx.pem
+rentx.pem:Zone.Identifier
