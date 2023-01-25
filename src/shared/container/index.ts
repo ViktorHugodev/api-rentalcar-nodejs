@@ -66,7 +66,6 @@ container.registerSingleton<IStorageProvider>(
   diskStorage[process.env.disk]
 )
 
-
 const mailProvider = {
   ethereal: container.resolve(EtherealMailProvider),
   ses: container.resolve(SESMailProvider),
