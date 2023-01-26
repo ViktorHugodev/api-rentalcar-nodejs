@@ -29,7 +29,7 @@ const AppDataSource = new DataSource({
     RentalCar,
     UsersToken,
   ],
-  migrations: ['./dist/shared/infra/database/migrations/*.js'],
+  migrations: ['./src/shared/infra/database/migrations/*.ts'],
 })
 export function createConnection(host = 'database'): Promise<DataSource> {
   return AppDataSource.setOptions({ host }).initialize()
