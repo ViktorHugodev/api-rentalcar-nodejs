@@ -16,7 +16,7 @@ import { RentalCar } from '@modules/rentals/infra/typeorm/entities/RentalCar'
 // yarn typeorm migration:run -d ./src/shared/infra/database/data-source.ts
 const AppDataSource = new DataSource({
   type: 'postgres',
-  port: 5432,
+  port: 6805,
   username: 'docker',
   password: 'docker',
   database: 'rentx',
@@ -31,8 +31,8 @@ const AppDataSource = new DataSource({
   ],
   migrations: ['./dist/shared/infra/database/migrations/*.js'],
 })
-export function createConnection(host = 'database'): Promise<DataSource> {
-  return AppDataSource.setOptions({ host }).initialize()
+export function createConnection(): Promise<DataSource> {
+  return AppDataSource.initialize()
 }
 
 export default AppDataSource
