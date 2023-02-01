@@ -11,6 +11,7 @@ import '@shared/container'
 import upload from '@config/upload'
 import { AppErrors } from '@errors/AppError'
 import { createConnection } from '@shared/infra/database/data-source'
+import { rateLimiterMiddleware } from '@shared/infra/http/middleware/rateLimiterRedis'
 import { router } from '@shared/infra/http/routes'
 
 import swaggerConfig from './swagger.json'
@@ -18,6 +19,7 @@ import swaggerConfig from './swagger.json'
 dotenv.config()
 
 const app = express()
+app.use(rateLimiterMiddleware)
 app.use(express.json())
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerConfig))
 app.use('/avatar', express.static(`${upload.tmpFolder}/avatar`))
